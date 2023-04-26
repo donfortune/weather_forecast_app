@@ -1,5 +1,5 @@
 import requests
-api_key = 'xxxxxxxxxxxxxxxxxxxx'
+api_key = 'xxxxxxxxxxxxx'
 
 
 
@@ -12,7 +12,7 @@ def get_data(place, days=None, type_=None):
     nr_values = 8 * days
     filtered_data = filtered_data[:nr_values]
     if type_ == 'Temperature':
-        filtered_data = [dict['main']['temp'] for dict in filtered_data]
+        filtered_data = [dict['main']['temp'] / 10 for dict in filtered_data]
     if type_ == 'Sky':
         filtered_data = [dict['weather'][0]['main'] for dict in filtered_data]
 

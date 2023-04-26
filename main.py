@@ -9,14 +9,17 @@ option = st.selectbox('What do you want to view', ('Temperature', 'Sky'))
 st.subheader(f'{option} for the next {days} days in {city}')
 if city:
 
+    try:
+        main_data = get_data(city, days, option)
 
-    main_data = get_data(city, days, option)
-    if option == 'Temperature':
+        if option == 'Temperature':
 
-        figure = px.line(main_data, labels={'x': 'Date', 'y': 'Temperature (C)'})
-        st.plotly_chart(figure)
+            figure = px.line(main_data, labels={'x': 'Date', 'y': 'Temperature (C)'})
+            st.plotly_chart(figure)
 
-    elif option == 'Sky':
-        images = {'Clear': 'images/clear.png', 'Clouds': 'images/cloud.png', 'Rain': 'images/rain.png', 'Snow': 'images/snow.png'}
-        image_paths = [images[condition] for condition in main_data]
-        st.image(image_paths, width=115)
+        elif option == 'Sky':
+            images = {'Clear': 'images/clear.png', 'Clouds': 'images/cloud.png', 'Rain': 'images/rain.png', 'Snow': 'images/snow.png'}
+            image_paths = [images[condition] for condition in main_data]
+            st.image(image_paths, width=115)
+    except KeyError:
+        st.info('Enter a Valid City')
