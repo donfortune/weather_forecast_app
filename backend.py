@@ -1,5 +1,5 @@
 import requests
-api_key = 'xxxxxxxxxxxxx'
+api_key = 'xxxxxxxxxxxxx' #your weather api key 
 
 
 
